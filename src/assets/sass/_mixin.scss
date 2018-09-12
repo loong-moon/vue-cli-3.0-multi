@@ -1,0 +1,103 @@
+@charset "UTF-8";
+/*所有sass变量及函数*/
+
+/*颜色*/
+$red: #ed3f14;
+$orange: #ffa600;
+$grreen: #19be6b;
+$blue: #2d8cf0;
+
+$primary: $blue; //主色
+$success: $grreen; //成功
+$warning: $orange; //警告
+$error: $red; //错误
+$info: #57c5f7; //信息
+$title: #1c2438; //标题
+$content: #495060; //内容
+$subColor: #80848f; //辅助、图标
+$disabled: #bbbec4; //失效
+$border: #dddee1; //边框
+$divider: #e9eaec; //分割线
+$background: #f8f8f8; //背景
+
+/*层级*/
+$z-layers: (
+    "default":1,
+    "below":-1,
+    "top":9999,
+    "bottom":-9999,
+    "modal": (
+        "base":500,
+        "close":100,
+        "header":50,
+        "footer":10
+    )
+);
+
+@function map-has-nested-keys($map, $keys...) {
+  @each $key in $keys {
+    @if not map-has-key($map, $key) {
+      @return false;
+    }
+    $map: map-get($map, $key);
+  }
+
+  @return true;
+}
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
+}
+//用法：z-index: z("modal", "base"); z-index: z("default");
+@function z($layers...) {
+  @if not map-has-nested-keys($z-layers, $layers...) {
+    @warn "No layer found for `#{inspect($layers...)}` in $z-layers map. Property omitted.";
+  }
+
+  @return map-deep-get($z-layers, $layers...);
+}
+
+//%placeholder
+%center{ position:absolute; top:50%; left: 50%; transform: translate(-50%, -50%);}
+%cover { position:absolute; top:0; left:0; bottom: 0; right: 0;}
+
+/*mixin*/
+@mixin clamp($lineClamp: 2) {
+  overflow : hidden;  text-overflow: ellipsis;  display: -webkit-box;  -webkit-line-clamp:$lineClamp;  -webkit-box-orient: vertical;
+}
+
+// 三角形
+@mixin triangle($direction, $size, $borderColor ) {
+  content:""; height: 0; width: 0;
+  @if $direction == top {
+    border-bottom:$size solid $borderColor; border-left:$size dashed transparent; border-right:$size dashed transparent;
+  }
+  @else if $direction == right {
+    border-left:$size solid $borderColor; border-top:$size dashed transparent; border-bottom:$size dashed transparent;
+  }
+  @else if $direction == bottom {
+    border-top:$size solid $borderColor; border-left:$size dashed transparent; border-right:$size dashed transparent;
+  }
+  @else if $direction == left {
+    border-right:$size solid $borderColor; border-top:$size dashed transparent; border-bottom:$size dashed transparent;
+  }
+}
+
+// 清楚浮动
+$for-ie7: false;
+@mixin clearfix { //支持调用
+  @if $for-ie7 {
+    *zoom: 1;
+  }
+  &:before, &:after {
+    content: "";
+    display: table;
+    font: 0/0 a;
+  }
+  &:after { clear: both; }
+}
+%clearfix { @include clearfix; } //支持组合申明
+
