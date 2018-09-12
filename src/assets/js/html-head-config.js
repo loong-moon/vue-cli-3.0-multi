@@ -7,8 +7,8 @@ module.exports = {
             author: 'star'
         }
     },
-    test: {
-        title: '测试',
+    page1: {
+        title: '测试页面一',
         meta: {
             keywords: '网页关键词',
             description: '网页描述'

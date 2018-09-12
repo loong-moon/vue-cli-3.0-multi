@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    测试页面一
+      测试页面二
   </div>
 </template>
 
-<style></style>
+<style lang="scss">
+</style>

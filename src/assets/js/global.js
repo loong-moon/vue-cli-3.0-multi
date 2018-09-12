@@ -2,13 +2,13 @@ import axios from './axios'
 import { formatDate } from './utils'
 
 export default {
-    install (vue) {
-        vue.filter('formatTime', function (value) {
-            let time = formatDate(value)
+    install(vue) {
+        vue.filter('formatTime', function(value) {
             // 返回处理后的值
-            return time
+            return formatDate(value)
         })
 
         vue.prototype.$http = axios
+        vue.config.productionTip = false
     }
 }

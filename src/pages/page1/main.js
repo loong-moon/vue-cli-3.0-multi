@@ -1,12 +1,11 @@
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import Vue from 'vue'
+import global from '@/assets/js/global'
 
-Vue.config.productionTip = false;
+import '@/assets/sass/_app.scss' // 要想提取到公共css上，必须import引用
+import App from './App.vue'
+
+Vue.use(global)
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount("#app");
+    render: h => h(App)
+}).$mount('#app')

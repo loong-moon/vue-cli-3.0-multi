@@ -1,9 +1,12 @@
 import Vue from 'vue'
-import App from './App.vue'
 import router from './router'
 import store from './store'
+import global from '@/assets/js/global'
 
-Vue.config.productionTip = false
+import '@/assets/sass/_app.scss'
+import App from './App.vue'
+
+Vue.use(global)
 
 new Vue({
     router,
