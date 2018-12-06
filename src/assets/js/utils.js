@@ -231,3 +231,18 @@ export const getExtend = url => {
     let extend = url.slice(index + 1) // 后缀名
     return extend
 }
+
+// 用星号加密证件
+export const plusStar = (str, frontLen, endLen) => {
+    if (!str) {
+        return str
+    }
+
+    let len = str.length - frontLen - endLen
+    let starStr = ''
+    for (var i = 0; i < len; i++) {
+        starStr += '*'
+    }
+    starStr = str.substr(0, frontLen) + starStr + str.substr(str.length - endLen)
+    return starStr
+}

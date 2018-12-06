@@ -1,10 +1,11 @@
 import axios from 'axios'
-import returnCode from './return-code'
+import returnCode from './enums/return-code'
 
 axios.defaults.timeout = 5000
 // axios.defaults.withCredentials = true;
 // axios.defaults.headers.common['Login-Token'] = localStorage.getItem('Login-Token')
 axios.defaults.headers.post['Content-Type'] = 'application/json'
+// axios.defaults.baseURL = '/v1'
 
 // 添加一个响应拦截器
 axios.interceptors.response.use(
