@@ -144,7 +144,7 @@ export const secondToString = second => {
 }
 
 // 格式化日期
-export const formatDate = (date, fmt) => {
+export const formatDateTime = (date, fmt) => {
     if (!date) {
         return date
     } else {
@@ -209,9 +209,8 @@ export const sizeof = (str, charset) => {
 // 生成唯一标识
 export const guid = () => {
     return (
-        Math.random()
-            .toString()
-            .substr(3, 4) + Date.now().toString(36)
+        Math.random().toString()
+        .substr(3, 4) + Date.now().toString(36)
     )
 }
 

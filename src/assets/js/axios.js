@@ -9,7 +9,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 // 添加一个响应拦截器
 axios.interceptors.response.use(
-    function(res) {
+    function (res) {
         // 在这里对返回的数据进行处理
         if (res.data.stateCode) {
             res.data.message = returnCode[res.data.stateCode]
@@ -17,7 +17,7 @@ axios.interceptors.response.use(
 
         return res
     },
-    function(err) {
+    function (err) {
         // 处理请求错误
         if (err && err.response) {
             switch (err.response.status) {
